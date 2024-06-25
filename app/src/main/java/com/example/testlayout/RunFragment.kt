@@ -1,10 +1,13 @@
 package com.example.testlayout
 
 import android.os.Bundle
+import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Chronometer
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +24,9 @@ class RunFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var stopwatch : Chronometer
+    private lateinit var startStop : Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -36,6 +42,30 @@ class RunFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_run, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        startStop = requireView().findViewById(R.id.run_start_stop_button)
+        stopwatch = requireView().findViewById(R.id.run_stopwatch)
+        startStop.setOnClickListener {
+            if (startStop.text == "START") {
+                resetChrono()
+                stopwatch.start()
+                startStop.text = "STOP"
+            } else if (startStop.text == "STOP") {
+                stopwatch.stop()
+                startStop.text = "START"
+            }
+        }
+    }
+
+    fun resetChrono( ) {
+        var chronoText : String = stopwatch.text.toString( )
+        var idleMilliseconds : Long = ClockUtility.milliseconds(
+            chronoText )
+        stopwatch.base = SystemClock.elapsedRealtime() - idleMilliseconds
+    }
+
 
     companion object {
         /**

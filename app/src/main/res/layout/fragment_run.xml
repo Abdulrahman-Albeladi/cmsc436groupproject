@@ -6,14 +6,44 @@
     android:background="@color/black"
     tools:context=".RunFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/run_rel_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/white"
-        android:text="running"
-        android:textSize="100dp"
-        android:gravity="center"
-        />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/run_header"
+            android:layout_width="match_parent"
+            android:layout_height="100sp"
+            android:layout_marginVertical="20dp"
+            android:gravity="center"
+            android:text="Timer"
+            android:textColor="@color/white"
+            android:textSize="78sp" />
+
+        <Chronometer
+            android:id="@+id/run_stopwatch"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/run_header"
+            android:layout_marginHorizontal="50sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="70sp" />
+
+        <Button
+            android:id="@+id/run_start_stop_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="80dp"
+            android:layout_marginVertical="100sp"
+            android:layout_below="@+id/run_stopwatch"
+            android:padding="20sp"
+            android:text="START"
+            android:textSize="32sp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white" />
+    </RelativeLayout>
+
 
 </FrameLayout>
